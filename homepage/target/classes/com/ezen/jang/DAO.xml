@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.jang.interA">
+
+<insert id="input">
+	insert into t_member values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7})
+</insert>
+
+<select id="out" resultType="com.ezen.jang.DTO">
+	select * from t_member
+</select>
+
+<delete id="delete">
+	delete from t_member where id = #{param1}
+</delete>
+
+<update id="update">
+	update t_member set pw = #{param2}, name = #{param3}, tel = #{param4}, email = #{param5}, adr = #{param6}, birth = #{param7} where id = #{param1}
+</update>
+
+<select id="login" resultType="com.ezen.jang.DTO">
+	select * from t_member where id = #{param1} and pw = #{param2}
+</select>
+
+<insert id="boardinput">
+	insert into t_board(num, writer, title, content, readcnt, groups, step, indent) 
+	values(seq_num.nextval, #{param1}, #{param2}, #{param3}, 0, seq_num.currval, 0, 0)
+</insert>
+
+<select id="boardout" resultType="com.ezen.jang.BoardDTO">
+	select * from t_board order by groups desc, step asc
+</select>
+
+<select id="boarddetail" resultType="com.ezen.jang.BoardDTO">
+	select * from t_board where num = #{param1}
+</select>
+
+<update id="readcnt">
+	update t_board set readcnt = readcnt + 1 where num = #{param1}
+</update>
+
+<insert id="commentin">
+	insert into t_comment(num, writer, con, comnum) values(#{param1}, #{param2}, #{param3}, seq_num.nextval)
+</insert>
+
+<select id="commentout" resultType="com.ezen.jang.ComDTO">
+	select * from t_comment where num = #{param1} order by comnum desc
+</select>
+
+<delete id="comdel">
+	delete from t_comment where comnum = #{param1}
+</delete>
+
+<select id="replyview" resultType="com.ezen.jang.BoardDTO">
+	select * from t_board where num = #{param1}
+</select>
+
+<insert id="replyinput">
+	insert into t_board(num, writer, title, content, readcnt, groups, step, indent) 
+	values(seq_num.nextval, #{param1}, #{param2}, #{param3}, 0, #{param4}, #{param5}, #{param6})
+</insert>
+
+<update id="stepup">
+	update t_board set step = step + 1 where groups = #{param1} and step > #{param2}
+</update>
+
+<delete id="delbo">
+	delete from t_board where num = #{param1}
+</delete>
+
+<select id="cntnotice" resultType="int">
+	SELECT COUNT(*) FROM t_board
+</select>
+
+<select id="selectnotice" resultType="com.ezen.jang.BoardDTO">
+	SELECT  * FROM (
+		select rownum rn,A.* from(  
+			select * from t_board ORDER BY groups DESC,step asc)A)
+	WHERE rn BETWEEN #{start} AND #{end}
+</select>
+</mapper>
+
+
