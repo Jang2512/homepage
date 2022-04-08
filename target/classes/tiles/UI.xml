@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+   <definition name="baseLayout"  template="/WEB-INF/views/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="top" value="/WEB-INF/views/top.jsp" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+   </definition>
+
+   <definition name="main" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+   </definition>
+   
+   <definition name="main2" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/main2.jsp" />
+   </definition>
+   
+   <definition name="infoout" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/infoout.jsp" />
+   </definition>
+   
+   <definition name="infoinput" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/infoinput.jsp" />
+   </definition>
+   
+   <definition name="modify" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/modify.jsp" />
+   </definition>
+   
+   <definition name="loginform" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/loginform.jsp" />
+   </definition>
+   
+   <definition name="board_input" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/board_input.jsp" />
+   </definition>
+   
+   <definition name="board_out" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/board_out.jsp" />
+   </definition>
+   
+   <definition name="board_detail" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/board_detail.jsp" />
+   </definition>
+   
+   <definition name="replyview" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/replyview.jsp" />
+   </definition>
+   
+    <definition name="page" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/page.jsp" />
+   </definition>
+ </tiles-definitions>
